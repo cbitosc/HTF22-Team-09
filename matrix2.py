@@ -1,3 +1,4 @@
+import openpyxl
 def missing(missing,st_list):
     for  i in missing:
         for j in st_list:
@@ -41,7 +42,7 @@ import pandas as pd
 import numpy as np
 def write(result,room_no):
     data = result
-    writer = pd.ExcelWriter('static/excel/'+room_no+'.xlsx', engine='xlsxwriter')
+    writer = pd.ExcelWriter('static/execl/'+room_no+'.xlsx', engine='xlsxwriter')
     df = pd.DataFrame(data)
     df = df.replace(np.nan, '', regex=True)
     df.to_excel(writer, sheet_name=room_no,header=None,index=False)
@@ -49,7 +50,7 @@ def write(result,room_no):
 
 def read(room_no):
     pd.options.display.float_format = '{:,.0f}'.format
-    temp = pd.read_excel('static/excel/'+room_no+'.xlsx',header=None,index_col=False).astype(str).replace(to_replace ="nan", value =0) 
+    temp = pd.read_excel('static/execl/'+room_no+'.xlsx',header=None,index_col=False).astype(str).replace(to_replace ="nan", value =0) 
     temp = temp.replace(to_replace =0, value ="Blank") 
     
     
