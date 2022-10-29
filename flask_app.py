@@ -88,15 +88,15 @@ def generate():
 			seat    = cursor.execute("SELECT seat FROM room WHERE room_no = ?",[room_no])
 			seat = cursor.fetchone()
 			seat= seat[0]
-			it_start = int(it_start)
-			it_end   = int(it_end)
-			ec_start = int(ec_start) 
-			ec_end   = int(ec_end)   
+		it_start = int(it_start)
+		it_end   = int(it_end)
+		ec_start = int(ec_start) 
+		ec_end   = int(ec_end)   
 		el_start = int(el_start)
-			el_end   = int(el_end) 
-			r_missing = r_missing.split()
+		el_end   = int(el_end) 
+		r_missing = r_missing.split()
 		for  i in range(len(r_missing)):
-				r_missing[i] = int(r_missing[i])
+			r_missing[i] = int(r_missing[i])
 		it_list = list(range(it_start,it_end+1))
 		it_list = missing(r_missing,it_list)
 		ec_list = list(range(ec_start,ec_end+1))
@@ -104,12 +104,12 @@ def generate():
 		el_list = list(range(el_start,el_end+1))
 		el_list = missing(r_missing,el_list)
 		check =len(el_list)+len(ec_list)+len(it_list)
-	if( check <= int(seat) ): 
-		data = run(el_list,ec_list,it_list,row,col)
-		write(data,room_no)
-		error = "Seating Arrangment For "+ room_no + " Is generated "
-	else:
-		error = " Total Number of student is Not More than " + str(seat) + " " +  str(check)	
+		if( check <= int(seat) ): 
+			data = run(el_list,ec_list,it_list,row,col)
+			write(data,room_no)
+			error = "Seating Arrangment For "+ room_no + " Is generated "
+		else:
+			error = " Total Number of student is Not More than " + str(seat) + " " +  str(check)	
 	return render_template("generate.html",room_no = temp_no,error=error )
 @app.route('/result',methods=['GET','POST'])
 def show():
@@ -125,7 +125,7 @@ def show():
 		room_no = request.form['room']
 		data =  read(room_no)
 		data= data.to_html()
-		filename = '/static/excel/'+room_no+'.xlsx'
+		filename = '/static/execl/'+room_no+'.xlsx'
 	return render_template("show_result.html",data=data,room_no=temp_no,filename=filename)
 @app.route('/delete/<id>')
 def delete(id):
