@@ -1,7 +1,7 @@
 from flask import Flask , render_template , request, redirect, url_for
 import sqlite3
 from matrix2 import run , write ,missing,read
-# import time
+import time
 
 app = Flask(__name__)
 @app.route("/")
@@ -22,7 +22,9 @@ def login():
 			error = "INVALID DETAILS"
 	return render_template("login.html",error=error)
 
-	
+
+room_numbers={}
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
@@ -34,7 +36,11 @@ def admin():
 		cursor.execute("CREATE TABLE IF NOT EXISTS room(room_no integer(10),col integer(10),row integer(10),seat integer(10))")
 		data = cursor.execute("SELECT * FROM room")
 		data = cursor.fetchall()
+		for i in data:
+			room_numbers[i[0]]=0
 	return render_template("admin.html",data=data)
+
+
 
 @app.route("/addroom",methods=['GET','POST'])
 def addroom():
@@ -45,6 +51,7 @@ def addroom():
 		row = request.form['row']
 		col = request.form['col']
 		seat = request.form['seat']
+		room_numbers[room_no]=0;
 		myconn = sqlite3.connect("room_details.db")
 		if (int(seat) <= int(row) * int(col)):
 			with myconn:
@@ -146,7 +153,7 @@ def user():
 	# 		room_no=cursor.execute("SELECT room_no from user WHERE id=?",[roll])
 	# 		print(room_no.fetchone()[0])
 	# 		obj=room_no.fetchone()[0]
-	return render_template("user.html")
+	return render_template("userk.html")
 
 
 @app.route('/user1',methods = ['POST','GET'])
@@ -155,7 +162,7 @@ def user1():
 
 		myconn=sqlite3.connect("user.db")
 	
-		roll = request.form["rollno"]
+		roll=request.form["rollno"]
 		with myconn:
 			cursor=myconn.cursor()
 			room_no=cursor.execute("SELECT room_no from user WHERE id=?",[roll]).fetchall()
@@ -165,9 +172,9 @@ def user1():
 			# print(room_no)
 			# f(int(room_no.fetchone()[0]))
 			# print(room_no.fetchmany()[0])
-			a = str(room_no[0][0])
+			a=str(room_no[0][0])
 
-	return render_template("user1.html",obj = a)
+	return render_template("user1.html",obj=a)
 ## @app.route('/user')
 # def f(n):
 # 	return render_template("user1.html",room_no=n)
@@ -201,10 +208,14 @@ def show():
 		data= data.to_html()
 		filename = '/static/execl/'+room_no+'.xlsx'
 	return render_template("show_result.html",data=data,room_no=temp_no,filename=filename)
-	
 @app.route('/delete/<id>')
 def delete(id):
 	myconn = sqlite3.connect("room_details.db")
+	del room_numbers[id]
+	myconn1=sqlite3.connect("user.db")
+	with myconn1:
+		cursor=myconn1.cursor()
+		cursor.execute("DELETE FROM user WHERE room_no=?",[id])
 	with myconn:
 		cursor = myconn.cursor()
 		cursor.execute("CREATE TABLE IF NOT EXISTS room(room_no integer(10),col integer(10),row integer(10),seat integer(10))")
@@ -212,7 +223,14 @@ def delete(id):
 	return  redirect(url_for('admin'))
 @app.route('/edit/<id>',methods=['GET','POST'])
 def edit(id):
+	myconn = sqlite3.connect("room_details.db")
+	
+	myconn1=sqlite3.connect("user.db")
+	with myconn1:
+		cursor=myconn1.cursor()
+		cursor.execute("DELETE FROM user WHERE room_no=?",[id])
 	if request.method == 'POST':
+
 		room_no = request.form['room_no']
 		row = request.form['row']
 		col = request.form['col']
@@ -222,7 +240,7 @@ def edit(id):
 			with myconn:
 				cursor = myconn.cursor()
 				cursor.execute("CREATE TABLE IF NOT EXISTS room(room_no integer(10),col integer(10),row integer(10),seat integer(10))")
-				cursor.execute("INSERT INTO room VALUES(?,?,?,?)",[room_no,col,row,seat]) 
+				cursor.execute("UPDATE room SET row=?,col=?,seat=? where room_no=?",[row,col,seat,room_no]) 
 				error = room_no + " is added"
 		else:
 			error = "Invalid number of seat" 
@@ -231,7 +249,7 @@ def edit(id):
 	with myconn:
 		cursor = myconn.cursor()
 		data = cursor.execute("SELECT * FROM room WHERE room_no = ?",[id])
-		data = cursor.fetchmany()
+		data = cursor.fetchall()
 	room_no = data[0][0]
 	col = 	data[0][1]
 	row = data[0][2]
@@ -239,6 +257,43 @@ def edit(id):
 	return render_template("addroom.html",error = error,room = room_no,col = col, row = row, seat = seat)
 
 
+@app.route('/teacher')
+def teacher():
+	return render_template("teacher.html")
+
+@app.route('/teacher1',methods = ['POST','GET'])
+def teacher1():
+	if request.method=='POST':
+		roll=request.form["rollno"]
+		for i in room_numbers:
+			if room_numbers[i]==roll:
+				return render_template("teacher1.html",obj=i)
+		else:
+			for i in room_numbers:
+				if room_numbers[i]==0:
+					room_numbers[i]=roll
+					return render_template("teacher1.html",obj=i)
+	return render_template("teacher1.html",obj="No room left")
+			
+# @app.route('/user')
+# def user():
+
+# 	return render_template("user.html")
+
+
+# @app.route('/user1',methods = ['POST','GET'])
+# def user1():
+# 	if request.method=='POST':
+
+# 		myconn=sqlite3.connect("user.db")
+	
+# 		roll=request.form["rollno"]
+# 		with myconn:
+# 			cursor=myconn.cursor()
+# 			room_no=cursor.execute("SELECT room_no from user WHERE id=?",[roll]).fetchall()
+# 			a=str(room_no[0][0])
+
+# 	return render_template("user1.html",obj=a)
 
 
 if __name__ == "__main__":

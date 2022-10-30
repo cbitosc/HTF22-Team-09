@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Class Alloted To Teacher</title>
     <style>
         body{
             background-image: url("user_bg.jpeg");
             background-repeat:  no-repeat;
-            background-size: 110%;
+            background-size: 100%;
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
             font-size: 30px;
-            
+            line-height: 1.7;
             color: #140f32;
-            background-color: #87878d;
+            background-color: #c6c6c9;
             overflow-x: hidden;
         }
 
@@ -25,47 +24,31 @@
             height: 100vh;
             width: 100vw;
             align-items: center;
-            justify-content:space-between;
+            justify-content: center;
         }
 
-        .container-left{
+        .container{
             border-radius: 10px;
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            margin: auto;
-            line-height: 0.5;
             box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
             background-color:aliceblue;
-            width: 30%;
+            width: 40%;
             height: 50vh;
         }
-        .container-right{
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;            
-            align-items: center;
-            margin: auto;
-            box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
-            background-color:aliceblue;
-            width: 50%;
-            height: 90vh;
-        }
-    </style>
+        
 
+    </style>
 </head>
 <body>
     <div class="main">
-        <div class="container-left">
+        <div class="container">
             <h3>Your are alloted to </h3>
-            <h1>Room No. </h1>
-            <h1>{{obj}}</h1>
-        </div>
-        <div class="container-right">
-            <h1>Show the seating table here</h1>
+            <h1>Room No. <span>{{obj}}</span></h1>
         </div>
     </div>
+
 </body>
 </html>
