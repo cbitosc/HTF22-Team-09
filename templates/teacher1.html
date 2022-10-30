@@ -7,7 +7,9 @@
     <title>Class Alloted To Teacher</title>
     <style>
         body{
-            background-image: url("user_bg.jpg");
+            background-image: url("user_bg.jpeg");
+            background-repeat:  no-repeat;
+            background-size: 100%;
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
             font-size: 30px;
@@ -29,6 +31,7 @@
             border-radius: 10px;
             display: flex;
             justify-content: center;
+            flex-direction: column;
             align-items: center;
             box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
             background-color:aliceblue;
@@ -36,11 +39,20 @@
             height: 50vh;
         }
 
+        .container span{
+            font-weight:bolder
+        }
+
     </style>
 </head>
 <body>
     <div class="main">
         <div class="container">
+            <div>Your are alloted to</div>
+            <div>
+                <h1>Room No. </h1>
+            </div>
+            
             <h1>{{obj}}</h1>
         </div>
     </div>
