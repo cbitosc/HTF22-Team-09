@@ -238,7 +238,7 @@ def show():
 @app.route('/delete/<id>')
 def delete(id):
 	myconn = sqlite3.connect("room_details.db")
-	del room_numbers[id]
+	del room_numbers[int(id)]
 	myconn1=sqlite3.connect("user.db")
 	with myconn1:
 		cursor=myconn1.cursor()
