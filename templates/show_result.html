@@ -35,7 +35,7 @@ body {
 }
 .container {
   border-radius: 5px;
-  /* background-color: #f2f2f2; */
+
   padding: 20px;
 }
 * {box-sizing: border-box;}
@@ -110,42 +110,36 @@ button:hover{
     text-align: center;
 }
 
-
-
 </style>
 </head>
 <body>
-  <!----NAVIGATION BARS----->
+
   <div class="topnav">
-  <a  href="/admin">Dashboard</a>
-  <a  href="/addroom">Add Room</a>
-  <a  href="/Generate">Generate</a>
-  <a class="active" href="/result">Show Result</a>
-  <a href="/">Logout</a>
-</div>
-<div class="container">
-  <form action="" method="POST">
-  <label>Select Room</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <select id="browser" name="room">
-    {% for row in room_no %}
-    {%for no in row %}
-    <option value={{no}}>{{no}}</option>
-    {% endfor %}
-    {% endfor %}
-    <input type="submit" value="SHOW">
-    {% if data %}
-    <button class="button"><a style="text-decoration:none;" href={{filename}} download>Download Excel Sheet</a></button>
-    {% endif %}
-  </select>
-  </form>
-</div>
-<div class="container">
-  {{data | safe}}
-</div>
-</body>
-</html>
-
-
+    <a  href="/admin">Dashboard</a>
+    <a  href="/addroom">Add Room</a>
+    <a  href="/Generate">Generate</a>
+    <a class="active" href="/result">Show Result</a>
+    <a href="/">Logout</a>
+  </div>
+  <div class="container">
+    <form action="" method="POST">
+    <label>Select Room</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="browser" name="room">
+      {% for row in room_no %}
+      {%for no in row %}
+      <option value={{no}}>{{no}}</option>
+      {% endfor %}
+      {% endfor %}
+      <input type="submit" value="SHOW">
+      {% if data %}
+      <button class="button"><a style="text-decoration:none;" href={{filename}} download>Download Excel Sheet</a></button>
+      {% endif %}
+    </select>
+    </form>
+  </div>
+  <div class="container">
+    {{data | safe}}
+  </div>
 </table>
 </body>
 </html>
