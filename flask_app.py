@@ -22,9 +22,7 @@ def login():
 			error = "INVALID DETAILS"
 	return render_template("login.html",error=error)
 
-
 	
-
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
@@ -157,7 +155,7 @@ def user1():
 
 		myconn=sqlite3.connect("user.db")
 	
-		roll=request.form["rollno"]
+		roll = request.form["rollno"]
 		with myconn:
 			cursor=myconn.cursor()
 			room_no=cursor.execute("SELECT room_no from user WHERE id=?",[roll]).fetchall()
@@ -167,9 +165,9 @@ def user1():
 			# print(room_no)
 			# f(int(room_no.fetchone()[0]))
 			# print(room_no.fetchmany()[0])
-			a=str(room_no[0][0])
+			a = str(room_no[0][0])
 
-	return render_template("user1.html",obj=a)
+	return render_template("user1.html",obj = a)
 ## @app.route('/user')
 # def f(n):
 # 	return render_template("user1.html",room_no=n)
@@ -203,6 +201,7 @@ def show():
 		data= data.to_html()
 		filename = '/static/execl/'+room_no+'.xlsx'
 	return render_template("show_result.html",data=data,room_no=temp_no,filename=filename)
+	
 @app.route('/delete/<id>')
 def delete(id):
 	myconn = sqlite3.connect("room_details.db")
