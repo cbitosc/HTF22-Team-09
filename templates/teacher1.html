@@ -38,6 +38,12 @@
             width: 40%;
             height: 50vh;
         }
+
+        .msg{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         
 
     </style>
@@ -45,8 +51,13 @@
 <body>
     <div class="main">
         <div class="container">
-            <h3>Your are alloted to </h3>
-            <h1>Room No. <span>{{obj}}</span></h1>
+            {%if obj != "No room left"%}
+                <h3>Your are alloted to </h3>
+                <h1>Room No. <span>{{obj}}</span></h1>
+            {%else%}
+                <div class="msg">No room alloted.</div><br>
+                <h3 class="msg"> Go to canteen!!</h3>
+            {%endif%}
         </div>
     </div>
 
