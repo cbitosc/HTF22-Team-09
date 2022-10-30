@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Alloted To Teacher</title>
+    <style>
+        body{
+            background-image: url("/static/images/user_bg.jpeg");
+            background-repeat:  no-repeat;
+            background-size: 100%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 30px;
+            line-height: 1.7;
+            color: #140f32;
+            background-color: #c6c6c9;
+            overflow-x: hidden;
+        }
+
+        .main{
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container{
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+            background-color:aliceblue;
+            width: 40%;
+            height: 50vh;
+        }
+
+        .msg{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            {%if obj != "No room left"%}
+                <h3>Your are alloted to </h3>
+                <h1>Room No. <span>{{obj}}</span></h1>
+            {%else%}
+                <div class="msg">No room alloted.</div><br>
+                <h3 class="msg"> Go to canteen!!</h3>
+            {%endif%}
+        </div>
+    </div>
+
+</body>
+</html>

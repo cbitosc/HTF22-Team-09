@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room alloted</title>
+
+    <style>
+        body{
+            background-image: url("/static/images/user_bg.jpeg");
+            background-repeat:  no-repeat;
+            background-size: 110%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 30px;
+            
+            color: #140f32;
+            background-color: #87878d;
+            overflow-x: hidden;
+        }
+
+        .main{
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            align-items: center;
+            justify-content:space-between;
+        }
+
+        .container-left{
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+            line-height: 0.5;
+            box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+            background-color:aliceblue;
+            width: 30%;
+            height: 50vh;
+        }
+        .container-right{
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;            
+            align-items: center;
+            margin: auto;
+            box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+            background-color:aliceblue;
+            width: 50%;
+            height: 90vh;
+            border:0;
+        }
+        h3{
+            margin: 2rem;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main">
+        <div class="container-left">
+            <h3>Your are alloted </h3>
+            <h1>Room No. </h1>
+            <h1>{{obj}}</h1>
+        </div>
+        <div class="container-right">
+            <h3>Roll Number: {{roll}}</h3>
+            <h3>Room No . {{obj}}</h3>
+            <div class="container">
+                {{data | safe}}
+              </div>
+        </div>
+    
+    </div>
+</body>
+</html>
