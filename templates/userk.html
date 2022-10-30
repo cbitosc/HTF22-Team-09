@@ -10,9 +10,10 @@
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
         body{
+            background-image:url("/static/images/user_bg.jpeg") ;
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
-            font-size: 30px;
+            font-size: 16px;
             line-height: 1.7;
             color: #140f32;
             background-color: #c6c6c9;
@@ -52,7 +53,7 @@
             display: block;
         }
         .full-height{
-        min-height: 100vh;
+        min-height: 82vh;
         }
         [type="checkbox"]:checked,
         [type="checkbox"]:not(:checked){
@@ -104,7 +105,7 @@
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
         perspective: 800px;
-        margin-top: 60px;
+        margin-top: 24px;
         }
         .card-3d-wrapper {
         width: 100%;
@@ -294,11 +295,23 @@
     </style>
   </head>
   <body>
+    <div style="background-color: aliceblue; width:60%; border-radius:9px;" class="container">
+        <header class="d-flex justify-content-center py-3">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="/" class="nav-link " aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="/user" class="nav-link active">Check Allotment</a></li>
+            
+            <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+            
+            <li class="nav-item"><a href="/About" class="nav-link ">About</a></li>
+          </ul>
+        </header>
+      </div>
 	<div class="section">
 		<div class="container">
 			<div class="row full-height justify-content-center">
-				<div class="col-12 text-center align-self-center py-5">
-					<div class="section pb-5 pt-5 pt-sm-2 text-center">
+				<div class="col-12 text-center align-self-center ">
+					<div class="section pt-sm-2 text-center">
 						<h6 class="mb-0 pb-3"><span>Student </span><span>Teacher</span></h6>
 			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
 			          	<label for="reg-log"></label>
@@ -307,18 +320,14 @@
 								<div class="card-front">
 									<div class="center-wrap">
 										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Check your Exam Room No.</h4>
+											<h4 class="mb-4 pb-3">Student</h4>
                                             <form action="/user1" method="post">
                                                 <div class="form-group">
                                                     <input type="number" name="rollno" class="form-style" placeholder="Your Roll Number" id="logemail" autocomplete="off">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
-                                                <!-- <div class="form-group mt-2">
-                                                    <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
-                                                    <i class="input-icon uil uil-lock-alt"></i>
-                                                </div> -->
                                                 <input type="submit" class="btn mt-4">
-                                                <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
+                                                
                                             </form>
 				      					</div>
 			      					</div>
@@ -326,11 +335,11 @@
 								<div class="card-back">
 									<div class="center-wrap">
 										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Check your alloted room</h4>
+											<h4 class="mb-4 pb-3">Teacher</h4>
                                             <form action="/teacher1" method="post">
 
                                                 <div class="form-group">
-                                                    <input type="number" name="rollno" class="form-style" placeholder="Your Faculty ID" id="logname" autocomplete="off">
+                                                    <input type="number" name="rollno" class="form-style" placeholder="Your ID" id="logname" autocomplete="off">
                                                     <i class="input-icon uil uil-user"></i>
                                                 </div>
                                                 

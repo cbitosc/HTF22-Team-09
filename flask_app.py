@@ -173,8 +173,12 @@ def user1():
 			# f(int(room_no.fetchone()[0]))
 			# print(room_no.fetchmany()[0])
 			a=str(room_no[0][0])
+			
+		data =  read(a)
+		# print(data)
+		data= data.to_html()
 
-	return render_template("user1.html",obj=a)
+	return render_template("user1.html",obj=a,roll=roll,data=data)
 ## @app.route('/user')
 # def f(n):
 # 	return render_template("user1.html",room_no=n)
@@ -205,9 +209,32 @@ def show():
 	if request.method == 'POST':
 		room_no = request.form['room']
 		data =  read(room_no)
+		# print(data)
 		data= data.to_html()
 		filename = '/static/execl/'+room_no+'.xlsx'
 	return render_template("show_result.html",data=data,room_no=temp_no,filename=filename)
+
+
+
+# @app.route('/show1/<room_no>',methods=['GET','POST'])
+# def show1(room_no):
+# 	data=None
+# 	filename = None
+# 	myconn = sqlite3.connect("room_details.db")
+# 	with myconn:
+# 		cursor = myconn.cursor()
+# 		cursor.execute("CREATE TABLE IF NOT EXISTS room(room_no integer(10),col integer(10),row integer(10),seat integer(10))")
+# 		temp_no = cursor.execute("SELECT room_no from room ")
+# 		temp_no = cursor.fetchall()
+# 	if request.method == 'POST':
+		
+# 		data =  read(room_no)
+# 		data= data.to_html()
+# 		filename = '/static/execl/'+room_no+'.xlsx'
+# 	return render_template("show_result1.html",data=data,room_no=temp_no,filename=filename)
+
+
+
 @app.route('/delete/<id>')
 def delete(id):
 	myconn = sqlite3.connect("room_details.db")

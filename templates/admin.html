@@ -29,10 +29,25 @@ body {
   color: black;
 }
 
+tr{
+  background-color: #dae9db;
+}
+
+h2{
+  margin-top: 20px;
+}
+
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
 }
+
+.admin-table{
+  padding: 30px;
+  color: #151615;
+
+}
+
 </style>
 </head>
 <body>
@@ -42,12 +57,12 @@ body {
   <a  href="/addroom">Add Room</a>
   <a href="/Generate">Generate</a>
   <a  href="/result">Show Result</a>
-  <a href="/login">Logout</a>
+  <a href="/">Logout</a>
 </div>
 <div>
-  <h2>No Of Room Generate</h2>
+  <h2 align="center">ROOM(s) GENERATED</h2>
 
-<table id="example" class="display" cellspacing="0" width="100%">
+<table class="admin-table" id="example" class="display" cellspacing="5"  cellpadding="20" width="100%">
     <thead>
       <tr >
         <th style="text-align: center;">Room No</th>
